@@ -68,11 +68,10 @@ namespace StarChart.Controllers
         [HttpPost]
         public IActionResult Create([FromBody]CelestialObject celestialObject)
         {
-            var celestialObjects = _context.CelestialObjects;
-            celestialObjects.Add(celestialObject);
+            _context.CelestialObjects.Add(celestialObject);
             _context.SaveChanges();
 
-            return CreatedAtRoute("GetById", new { }, celestialObject);
+            return CreatedAtRoute("GetById", new { id = celestialObject.Id }, celestialObject);
         }
     }
 }
