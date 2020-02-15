@@ -77,18 +77,18 @@ namespace StarChart.Controllers
         [HttpPut("{id}")]
         public IActionResult Update(int id, CelestialObject celestialObject)
         {
-            var currentObjects = _context.CelestialObjects.Find(id);
+            var currentObject = _context.CelestialObjects.Find(id);
 
-            if (currentObjects == null)
+            if (currentObject == null)
             {
                 return NotFound();
             }
 
-            currentObjects.Name = celestialObject.Name;
-            currentObjects.OrbitalPeriod = celestialObject.OrbitalPeriod;
-            currentObjects.OrbitedObjectId = celestialObject.OrbitedObjectId;
+            currentObject.Name = celestialObject.Name;
+            currentObject.OrbitalPeriod = celestialObject.OrbitalPeriod;
+            currentObject.OrbitedObjectId = celestialObject.OrbitedObjectId;
 
-            _context.CelestialObjects.Update(currentObjects);
+            _context.CelestialObjects.Update(currentObject);
             _context.SaveChanges();
 
             return NoContent();
